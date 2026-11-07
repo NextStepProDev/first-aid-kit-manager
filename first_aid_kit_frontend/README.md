@@ -34,7 +34,7 @@ Modern React application for managing your home first aid kit. Track medications
 
 - Node.js 24+
 - npm or yarn
-- Backend API running (see [first-aid-kit-api](https://github.com/NextStepProDev/first-aid-kit-api))
+- Backend API running (see [`first-aid-kit-api/`](../first-aid-kit-api))
 
 ## Quick Start
 
@@ -43,8 +43,8 @@ Modern React application for managing your home first aid kit. Track medications
 The easiest way to run the complete application is using the deployment hub:
 
 ```bash
-git clone https://github.com/NextStepProDev/first-aid-kit-manager-hub.git
-cd first-aid-kit-manager-hub
+git clone https://github.com/NextStepProDev/first-aid-kit-manager.git
+cd first-aid-kit-manager/first-aid-kit-manager-hub
 cp .env.example .env
 # Edit .env with your credentials
 docker compose up -d
@@ -58,8 +58,8 @@ For local development with hot reload:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/NextStepProDev/first_aid_kit_frontend.git
-cd first_aid_kit_frontend
+git clone https://github.com/NextStepProDev/first-aid-kit-manager.git
+cd first-aid-kit-manager/first_aid_kit_frontend
 ```
 
 2. Install dependencies:
@@ -135,12 +135,12 @@ npm run build
 
 Creates an optimized build in the `dist/` folder, ready for deployment.
 
-## Related Repositories
+## Related Folders
 
-| Repository | Description |
-|------------|-------------|
-| [first-aid-kit-manager-hub](https://github.com/NextStepProDev/first-aid-kit-manager-hub) | Docker deployment hub |
-| [first-aid-kit-api](https://github.com/NextStepProDev/first-aid-kit-api) | Backend REST API |
+| Folder | Description |
+|--------|-------------|
+| [`first-aid-kit-manager-hub/`](../first-aid-kit-manager-hub) | Docker deployment hub |
+| [`first-aid-kit-api/`](../first-aid-kit-api) | Backend REST API |
 
 ## License
 

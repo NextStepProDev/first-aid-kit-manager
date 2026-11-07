@@ -41,7 +41,7 @@ jobs:
 
       - name: Encode setup-swap.sh
         id: swap
-        run: echo "content=$(base64 -w 0 setup-swap.sh)" >> "$GITHUB_OUTPUT"
+        run: echo "content=$(base64 -w 0 first-aid-kit-manager-hub/setup-swap.sh)" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to Oracle Cloud VM
         uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5

@@ -1,11 +1,17 @@
-name: Docker Publish - Frontend
+name: CI Frontend
 
+# Monorepo: tylko zmiany we froncie (albo w tym pliku) odpalaja ten workflow.
 on:
   push:
     branches: [ "main" ]
-    tags: [ 'v*.*.*' ]
+    paths:
+      - first_aid_kit_frontend/**
+      - .github/workflows/ci-frontend.yml
   pull_request:
     branches: [ "main" ]
+    paths:
+      - first_aid_kit_frontend/**
+      - .github/workflows/ci-frontend.yml
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,6 +25,10 @@ env:
 # a nowy job bez wlasnego bloku dostanie to, a nie domyslne uprawnienia repozytorium.
 permissions:
   contents: read
+
+defaults:
+  run:
+    working-directory: first_aid_kit_frontend
 
 jobs:
   test:
@@ -36,6 +46,7 @@ jobs:
         with:
           node-version: '26'
           cache: npm
+          cache-dependency-path: first_aid_kit_frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -51,7 +62,7 @@ jobs:
 
   build:
     needs: test
-    # na PR tylko testy; obraz publikujemy z main i tagow
+    # na PR tylko testy; obraz publikujemy z main
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -94,14 +105,13 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
-            type=semver,pattern={{version}}
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=raw,value=${{ steps.version.outputs.version }},enable=${{ github.ref == 'refs/heads/main' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
-          context: .
+          context: first_aid_kit_frontend
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}

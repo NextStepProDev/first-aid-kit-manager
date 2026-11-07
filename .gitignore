@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Edytory i lokalne ustawienia Claude Code
+.vscode/
+.idea/
+.claude/settings.local.json
+
+# Prywatne dane: prawdziwa lista leków, nie do publicznego repo
+lista_lekow.csv

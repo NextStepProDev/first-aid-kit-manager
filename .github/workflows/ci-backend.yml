@@ -1,10 +1,17 @@
-name: Docker Publish - Backend
+name: CI Backend
 
+# Monorepo: tylko zmiany w backendzie (albo w tym pliku) odpalaja ten workflow.
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - first-aid-kit-api/**
+      - .github/workflows/ci-backend.yml
   pull_request:
     branches: [ "main" ]
+    paths:
+      - first-aid-kit-api/**
+      - .github/workflows/ci-backend.yml
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -18,6 +25,10 @@ env:
 # a nowy job bez wlasnego bloku dostanie to, a nie domyslne uprawnienia repozytorium.
 permissions:
   contents: read
+
+defaults:
+  run:
+    working-directory: first-aid-kit-api
 
 jobs:
   test:
@@ -93,7 +104,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
-          context: .
+          context: first-aid-kit-api
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}

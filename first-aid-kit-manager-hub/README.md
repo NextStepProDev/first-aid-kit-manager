@@ -115,7 +115,7 @@ docker compose up -d --build
 
 ## Production Deploy (GitHub Actions)
 
-Production is deployed by the manual **Deploy** workflow (`.github/workflows/deploy.yml`, *Run workflow*):
+Production is deployed by the manual **Deploy** workflow (`.github/workflows/deploy.yml` in the monorepo root, *Run workflow*):
 
 - **Version** – leave the field blank to deploy `main`, or enter an image tag (e.g. `sha-abc1234`). Anything that is not a tag (`^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$`) is rejected before the job connects to the server. The resolved tag is also written as `VERSION=` to the server's `.env`. It only takes effect where the server's compose file uses `${VERSION}`; a compose pinned to `:main` ignores it, and verification then fails for any other tag.
 - **Disk cleanup** – before every pull, old `first-aid-kit-api` / `first-aid-kit-web` images are removed. Kept: every image a container uses, plus the two newest images per repository (the current release and the previous one, for rollback). Images are counted by image ID, not by tag. Postgres and other images are not touched. Cleanup only warns; it never fails the deploy.
@@ -183,12 +183,14 @@ docker compose up -d
 - **Gmail App Passwords** - Use [App Passwords](https://support.google.com/accounts/answer/185833), not your regular Gmail password
 - **Change defaults** - Don't use example values in production
 
-## Related Repositories
+## Related Folders
 
-| Repository | Description |
-|------------|-------------|
-| [first-aid-kit-api](https://github.com/NextStepProDev/first-aid-kit-api) | Backend REST API (Spring Boot) |
-| [first-aid-kit-frontend](https://github.com/NextStepProDev/first_aid_kit_frontend) | Frontend application (React) |
+This hub lives in the [first-aid-kit-manager](https://github.com/NextStepProDev/first-aid-kit-manager) monorepo next to:
+
+| Folder | Description |
+|--------|-------------|
+| [`first-aid-kit-api/`](../first-aid-kit-api) | Backend REST API (Spring Boot) |
+| [`first_aid_kit_frontend/`](../first_aid_kit_frontend) | Frontend application (React) |
 
 ## License
 

@@ -133,7 +133,7 @@ Before running this application, ensure you have the following installed:
 ## 🚀 Setup & Run the Application
 
 > **Recommended:** To run the full stack (Backend + Frontend + Database) with a single command,
-> use the [First Aid Kit Hub](https://github.com/NextStepProDev/first-aid-kit-manager-hub) repository.
+> use the [`first-aid-kit-manager-hub/`](https://github.com/NextStepProDev/first-aid-kit-manager/tree/main/first-aid-kit-manager-hub) folder of the monorepo.
 > The instructions below are for running the API standalone.
 
 ### Port Reference
@@ -150,8 +150,8 @@ There are two ways to run the application: locally via IntelliJ/Gradle or using 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/NextStepProDev/first_aid_kit.git
-   cd first_aid_kit
+   git clone https://github.com/NextStepProDev/first-aid-kit-manager.git
+   cd first-aid-kit-manager/first-aid-kit-api
    ```
 
 2. Make sure you have PostgreSQL running (either locally or via Docker) and that the credentials match the
@@ -397,7 +397,7 @@ This project uses [semantic versioning](https://semver.org/) — format: `MAJOR.
 
 - Current version: **`2.1.0-SNAPSHOT`**
 
-You can browse release history [here](https://github.com/NextStepProDev/first_aid_kit/releases).
+You can browse release history [here](https://github.com/NextStepProDev/first-aid-kit-manager/tags) (backend tags are prefixed `api/`).
 
 ### License
 
