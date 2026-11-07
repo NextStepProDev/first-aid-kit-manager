@@ -1,0 +1,14 @@
+export { LoginPage } from './LoginPage';
+export { RegisterPage } from './RegisterPage';
+export { ForgotPasswordPage } from './ForgotPasswordPage';
+export { DashboardPage } from './DashboardPage';
+export { DrugsPage } from './DrugsPage';
+export { DrugFormPage } from './DrugFormPage';
+export { ProfilePage } from './ProfilePage';
+export { NotFoundPage } from './NotFoundPage';
+export { AdminUsersPage } from './AdminUsersPage';
+export { ContactPage } from './ContactPage';
+export { AboutUsPage } from './AboutUsPage';
+export { ResetPasswordPage } from './ResetPasswordPage';
+export { VerifyEmailPage } from './VerifyEmailPage';
+export { PrivacyPolicyPage } from './PrivacyPolicyPage';

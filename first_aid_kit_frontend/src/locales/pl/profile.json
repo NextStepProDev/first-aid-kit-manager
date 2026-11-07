@@ -1,0 +1,82 @@
+{
+  "title": "Ustawienia",
+  "subtitle": "Zarządzaj swoim kontem i preferencjami",
+  "validation": {
+    "currentPasswordRequired": "Aktualne hasło jest wymagane",
+    "passwordMinLength": "Hasło musi mieć min. 8 znaków",
+    "passwordUppercase": "Hasło musi zawierać wielką literę",
+    "passwordLowercase": "Hasło musi zawierać małą literę",
+    "passwordDigit": "Hasło musi zawierać cyfrę",
+    "passwordSpecial": "Hasło musi zawierać znak specjalny",
+    "passwordMismatch": "Hasła nie są identyczne",
+    "passwordRequired": "Hasło jest wymagane",
+    "nameMinLength": "Imię musi mieć min. 2 znaki",
+    "nameMaxLength": "Imię może mieć max. 100 znaków",
+    "usernameMinLength": "Nazwa użytkownika musi mieć min. 5 znaków",
+    "usernameMaxLength": "Nazwa użytkownika może mieć max. 36 znaków"
+  },
+  "profile": {
+    "title": "Profil użytkownika",
+    "editButton": "Edytuj profil",
+    "saveButton": "Zapisz zmiany",
+    "nameLabel": "Imię i nazwisko",
+    "namePlaceholder": "Wpisz imię i nazwisko",
+    "usernameLabel": "Nazwa użytkownika",
+    "usernamePlaceholder": "Wpisz nazwę użytkownika",
+    "emailLabelFixed": "Email (nie można zmienić)",
+    "emailNote": "Adres email jest przypisany do konta i nie może być zmieniony."
+  },
+  "language": {
+    "title": "Język aplikacji",
+    "description": "Wybierz język interfejsu. Ustawienie jest przypisane do konta i ma pierwszeństwo nad językiem przeglądarki."
+  },
+  "notifications": {
+    "title": "Powiadomienia email",
+    "emailAlerts": "Alerty email",
+    "description": "Otrzymuj przypomnienia o wygasających lekach"
+  },
+  "changePassword": {
+    "title": "Zmień hasło",
+    "currentPasswordLabel": "Aktualne hasło",
+    "newPasswordLabel": "Nowe hasło",
+    "confirmPasswordLabel": "Potwierdź nowe hasło",
+    "submitButton": "Zmień hasło",
+    "requirements": {
+      "minLength": "Min. 8 znaków",
+      "uppercase": "Wielka litera",
+      "lowercase": "Mała litera",
+      "digit": "Cyfra",
+      "special": "Znak specjalny"
+    }
+  },
+  "dangerZone": {
+    "title": "Strefa niebezpieczna",
+    "sessionTitle": "Sesja",
+    "warning": "Ta operacja jest nieodwracalna. Wszystkie Twoje dane zostaną trwale usunięte.",
+    "deleteButton": "Usuń konto"
+  },
+  "deleteAccount": {
+    "title": "Usuń konto",
+    "confirmation": "Aby potwierdzić, wprowadź swoje hasło:",
+    "passwordPlaceholder": "Wprowadź hasło...",
+    "confirmButton": "Usuń konto na zawsze"
+  },
+  "messages": {
+    "profileUpdated": "Profil został zaktualizowany",
+    "profileUpdateFailed": "Nie udało się zaktualizować profilu",
+    "passwordChanged": "Hasło zostało zmienione",
+    "passwordChangeFailed": "Nie udało się zmienić hasła",
+    "notificationsEnabled": "Powiadomienia włączone",
+    "notificationsDisabled": "Powiadomienia wyłączone",
+    "notificationsUpdateFailed": "Nie udało się zmienić ustawień powiadomień",
+    "languageChanged": "Język został zmieniony",
+    "languageChangeFailed": "Nie udało się zmienić języka",
+    "accountDeleted": "Konto zostało usunięte",
+    "accountDeleteFailed": "Nie udało się usunąć konta",
+    "currentPasswordIncorrect": "Aktualne hasło jest nieprawidłowe",
+    "passwordsMustDiffer": "Nowe hasło musi się różnić od obecnego",
+    "passwordsDoNotMatch": "Hasła nie są identyczne",
+    "invalidPassword": "Nieprawidłowe hasło",
+    "usernameExists": "Nazwa użytkownika już istnieje"
+  }
+}
