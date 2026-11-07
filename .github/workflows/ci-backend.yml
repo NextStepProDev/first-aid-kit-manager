@@ -12,6 +12,8 @@ on:
     paths:
       - first-aid-kit-api/**
       - .github/workflows/ci-backend.yml
+  # Reczne odpalenie, np. gdy push nie przeszedl przez filtr paths (force push).
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
