@@ -2,7 +2,12 @@ server:
   port: 8080
 # Wymusza obsługę nagłówków przekazywanych przez reverse proxy (np. ngrok)
 # Dzięki temu Swagger UI generuje poprawne linki (https zamiast http)
-  forward-headers-strategy: framework
+# Do Boot 4.2 było to server.forward-headers-strategy. X-Forwarded-Prefix jest ignorowany
+# (domyślne use-prefix: false w 4.2): nginx proxuje /api/ bez prefiksu ścieżki.
+  request:
+    header:
+      forwarded:
+        strategy: framework
 
 spring:
   threads:

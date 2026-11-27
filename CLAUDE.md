@@ -6,7 +6,7 @@ First Aid Kit Manager - aplikacja do zarządzania domową apteczką. Monorepo z 
 
 ```
 first-aid-kit-manager/
-├── first-aid-kit-api/           # Backend - Spring Boot 4.1.2, Java 25
+├── first-aid-kit-api/           # Backend - Spring Boot 4.2.0, Java 25
 ├── first_aid_kit_frontend/      # Frontend - React 19, TypeScript 6, Vite 8, Tailwind CSS 4
 └── first-aid-kit-manager-hub/   # Deployment hub - docker-compose for full stack
 ```
@@ -91,7 +91,7 @@ cd first_aid_kit_frontend && npm run dev
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | Java 25, Spring Boot 4.1.2, Spring Security, Spring Data JPA |
+| Backend | Java 25, Spring Boot 4.2.0, Spring Security, Spring Data JPA |
 | Database | PostgreSQL 18.6, Flyway migrations |
 | Frontend | React 19, TypeScript 6, React Router 7, React Query 5, Vite 8 |
 | Styling | Tailwind CSS 4, dark theme, i18n (PL/EN) |

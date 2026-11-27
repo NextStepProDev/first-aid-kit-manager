@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -31,6 +32,10 @@ import java.util.Set;
 @AutoConfigureTestRestTemplate
 @ActiveProfiles("test")
 @Import({NoSecurityConfig.class, TestCacheConfig.class, TestFlywayRunner.class, TestSecurityConfig.class})
+// Kontener z @Container jest statyczny, więc Testcontainers zatrzymuje go po każdej klasie testowej.
+// Bez tego Spring oddałby następnej klasie o tej samej konfiguracji kontekst z pamięci podręcznej,
+// który wciąż wskazuje na zatrzymanego Postgresa.
+@DirtiesContext
 public abstract class AbstractIntegrationTest {
 
     @Container
