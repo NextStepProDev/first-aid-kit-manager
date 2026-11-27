@@ -1,7 +1,9 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version "${dependencyManagementVersion}"
+    // Versions live in gradle/libs.versions.toml, never in "${...}", so Dependabot can bump them
+    // (see the header of that file for why alerts need dependency-submission.yml as well).
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.dependency.management)
     id 'jacoco'
 }
 
@@ -46,30 +48,30 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    implementation "com.github.ben-manes.caffeine:caffeine:${caffeineVersion}"
+    implementation libs.caffeine
 
     // Rate limiting (bucket4j 8.x moved to the com.bucket4j groupId; jdk17 variant)
-    implementation "com.bucket4j:bucket4j_jdk17-core:${bucket4jVersion}"
+    implementation libs.bucket4j.core
 
     // Resilience4j for circuit breaker and retry (spring-boot4 starter for Spring Boot 4)
-    implementation "io.github.resilience4j:resilience4j-spring-boot4:${resilience4jVersion}"
-    implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
+    implementation libs.resilience4j.spring.boot4
+    implementation libs.resilience4j.retry
 
-    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiVersion}"
+    implementation libs.springdoc.openapi
 
-    implementation "com.github.librepdf:openpdf:${librePdfVersion}"
+    implementation libs.openpdf
 
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
     // JWT support
-    implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
-    runtimeOnly "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
-    runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+    implementation libs.jjwt.api
+    runtimeOnly libs.jjwt.impl
+    runtimeOnly libs.jjwt.jackson
 
-    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
-    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-    implementation "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
-    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+    implementation libs.mapstruct
+    annotationProcessor libs.mapstruct.processor
+    implementation libs.lombok.mapstruct.binding
+    annotationProcessor libs.lombok.mapstruct.binding
 
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
@@ -83,7 +85,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 
     // Import Testcontainers BOM (platform) BEFORE declaring testcontainers artifacts
-    testImplementation platform("org.testcontainers:testcontainers-bom:${testcontainersVersion}")
+    testImplementation platform(libs.testcontainers.bom)
 
     testImplementation 'org.testcontainers:testcontainers-junit-jupiter'
     testImplementation 'org.testcontainers:testcontainers-postgresql'

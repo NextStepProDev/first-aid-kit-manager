@@ -1,0 +1,116 @@
+version: 2
+
+# Weekly dependency updates. Minor/patch bumps are grouped into a single PR per ecosystem so routine
+# maintenance stays one review, while major bumps arrive on their own (they need a real look).
+# Every Monday at 06:00 Warsaw time, the same slot in all of the owner's projects, so the week's
+# dependency PRs from every repo land together and get cleared in one sitting. `time` is not
+# decoration: without it Dependabot picks a random hour per repo. Fresh releases wait out
+# Dependabot's default 3-day cooldown (security updates do not).
+#
+# Until this file existed the repo had no Dependabot at all: no update PRs, and alerts and security
+# updates were switched off in the settings, so nothing here was ever proposed or flagged.
+updates:
+  - package-ecosystem: npm
+    directory: /first_aid_kit_frontend
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      # TypeScript 7 is blocked by typescript-eslint, whose peer range ends below it (checked
+      # 2026-11-27), so a TS 7 PR would only arrive red. Unblock when typescript-eslint supports 7.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+    groups:
+      frontend-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  # Plugin and library versions come from first-aid-kit-api/gradle/libs.versions.toml.
+  - package-ecosystem: gradle
+    directory: /first-aid-kit-api
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      backend-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(ci)"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  # Base images for both containers (Dockerfile FROM lines).
+  - package-ecosystem: docker
+    directories:
+      - /first-aid-kit-api
+      - /first_aid_kit_frontend
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(docker)"
+    ignore:
+      # 25 is the Java LTS line; 26-28 are non-LTS releases supported for about six months, and the
+      # next LTS is 29. build.gradle (`languageVersion = 25`) and setup-java in ci-backend.yml stay
+      # on 25, so changing the Java line is a decision for all three at once, not a routine PR.
+      - dependency-name: eclipse-temurin
+        update-types: ["version-update:semver-major"]
+      # The frontend build stage runs node:26 (an even, LTS line) and ci-frontend.yml pins
+      # node-version 26. Odd majors never get LTS and die after about seven months, and the PR
+      # would bump only the Dockerfile, leaving CI behind.
+      - dependency-name: node
+        update-types: ["version-update:semver-major"]
+
+  # Compose files are a SEPARATE ecosystem: `docker` above reads only Dockerfiles, so adding these
+  # directories there would look like a fix and update nothing. The api one is the local dev stack;
+  # the hub one is the reference stack (the VM keeps its own compose file, which deploy.yml does not
+  # ship), so these PRs keep dev in step with production rather than change production itself.
+  - package-ecosystem: docker-compose
+    directories:
+      - /first-aid-kit-api
+      - /first-aid-kit-manager-hub
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(docker)"
+    ignore:
+      # A Postgres MAJOR bump is a data migration (dump and restore), not a version bump: the server
+      # refuses to start on a data directory written by another major. It must not arrive as a
+      # routine PR that looks like all the others.
+      - dependency-name: postgres
+        update-types: ["version-update:semver-major"]

@@ -1,0 +1,51 @@
+# Makes the backend's dependencies visible to GitHub, which is the precondition for ever receiving
+# a security advisory about them.
+#
+# GitHub's dependency graph has NO static parser for Gradle: not build.gradle, not
+# gradle/libs.versions.toml. Gradle is supported only through the Dependency Submission API, which
+# is what this workflow calls. Before it existed the repo's SBOM listed 339 npm and 10 actions
+# packages and ZERO maven ones, so no advisory against Spring Boot, Tomcat or jjwt could reach
+# anybody. Ported from Fire Academy and Next Step Pro Climbing, where the same gap was found.
+#
+# This runs a real Gradle resolution, so it reports the versions actually on the runtime classpath,
+# including the transitive ones the Spring Boot BOM manages and a file parser could never see.
+name: Dependency Submission
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - first-aid-kit-api/**
+      - .github/workflows/dependency-submission.yml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-submission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # contents: write is what the Dependency Submission API requires, and it is granted HERE rather
+    # than at workflow level so it covers this job alone.
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: 25
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+        with:
+          build-root-directory: first-aid-kit-api
+          # Report what ships, not what builds it. Without this the graph also lists the libraries
+          # Gradle PLUGINS use during the build, which reach neither the jar nor the server, and
+          # raises alerts Dependabot cannot fix (security_update_dependency_not_found). Plugin
+          # versions stay covered by the gradle ecosystem in dependabot.yml.
+          dependency-graph-exclude-configurations: classpath

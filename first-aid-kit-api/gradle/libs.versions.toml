@@ -1,0 +1,44 @@
+# Backend dependency versions, in the format Dependabot's Gradle updater supports directly.
+#
+# Versions used to sit in gradle.properties and reached build.gradle through "${springBootVersion}".
+# A version catalog is the documented way to keep them in one file while Dependabot can still
+# find and bump each one; do not go back to "${...}" in build.gradle.
+#
+# Two separate mechanisms, easy to confuse:
+# - Version-update PRs: Dependabot (.github/dependabot.yml, gradle ecosystem) reads this file.
+# - Security alerts: GitHub's dependency graph has NO static parser for Gradle (not build.gradle,
+#   not this file). It learns the Gradle dependencies only from
+#   .github/workflows/dependency-submission.yml, which resolves the real runtime classpath,
+#   transitive libraries included. Before it existed the graph listed 339 npm packages, 10 actions
+#   and zero maven ones, so no advisory against Spring Boot, Tomcat or jjwt could reach anybody.
+[versions]
+spring-boot = "4.2.0"
+dependency-management = "1.1.7"
+testcontainers = "2.0.5"
+mapstruct = "1.6.3"
+lombok-mapstruct-binding = "0.2.0"
+openpdf = "3.0.6"
+springdoc = "3.2.1"
+caffeine = "3.3.1"
+jjwt = "0.13.0"
+bucket4j = "8.23.0"
+resilience4j = "2.4.0"
+
+[libraries]
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
+bucket4j-core = { module = "com.bucket4j:bucket4j_jdk17-core", version.ref = "bucket4j" }
+resilience4j-spring-boot4 = { module = "io.github.resilience4j:resilience4j-spring-boot4", version.ref = "resilience4j" }
+resilience4j-retry = { module = "io.github.resilience4j:resilience4j-retry", version.ref = "resilience4j" }
+springdoc-openapi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
+openpdf = { module = "com.github.librepdf:openpdf", version.ref = "openpdf" }
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+lombok-mapstruct-binding = { module = "org.projectlombok:lombok-mapstruct-binding", version.ref = "lombok-mapstruct-binding" }
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+dependency-management = { id = "io.spring.dependency-management", version.ref = "dependency-management" }

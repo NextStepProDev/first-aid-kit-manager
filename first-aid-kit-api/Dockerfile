@@ -4,8 +4,10 @@ WORKDIR /app
 
 # 1. Kopiujemy wrapper i konfigurację Gradle
 COPY gradlew .
+# gradle/ carries both the wrapper and libs.versions.toml, where every dependency version lives:
+# without this line the build has no versions at all.
 COPY gradle/ gradle/
-# TUTAJ DODAJEMY gradle.properties - to rozwiązuje błąd z wersjami!
+# gradle.properties holds only Gradle settings now (no versions), but COPY fails if it is missing.
 COPY build.gradle settings.gradle gradle.properties ./
 
 # 2. Kopiujemy kod źródłowy
