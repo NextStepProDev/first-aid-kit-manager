@@ -39,7 +39,7 @@ import java.util.Set;
 public abstract class AbstractIntegrationTest {
 
     @Container
-    static PostgreSQLContainer postgresContainer = new PostgreSQLContainer("postgres:18.6")
+    static PostgreSQLContainer postgresContainer = new PostgreSQLContainer("postgres:18.7")
             .withDatabaseName("testdb")
             .withUsername("test")
             .withPassword("test");

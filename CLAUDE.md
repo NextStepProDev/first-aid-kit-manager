@@ -92,9 +92,9 @@ cd first_aid_kit_frontend && npm run dev
 | Layer | Technology |
 |-------|-----------|
 | Backend | Java 25, Spring Boot 4.2.0, Spring Security, Spring Data JPA |
-| Database | PostgreSQL 18.6, Flyway migrations |
+| Database | PostgreSQL 18.7, Flyway migrations |
 | Frontend | React 19, TypeScript 6, React Router 7, React Query 5, Vite 8 |
 | Styling | Tailwind CSS 4, dark theme, i18n (PL/EN) |
 | Forms | React Hook Form 7, Zod 4 |
 | Auth | JWT (access 1h + refresh 24h), Axios interceptors |
-| Build | Gradle 9.8 (backend), Vite/npm on Node 26 (frontend), Docker multi-stage |
+| Build | Gradle 9.9 (backend), Vite/npm on Node 26 (frontend), Docker multi-stage |

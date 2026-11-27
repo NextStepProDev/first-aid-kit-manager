@@ -1,7 +1,7 @@
 # First Aid Kit Manager - Deployment Hub
 
 ![Docker](https://img.shields.io/badge/Docker-Required-blue)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18.6-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18.7-blue)
 ![Java](https://img.shields.io/badge/Java-25-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.2.0-green)
 ![React](https://img.shields.io/badge/React-19-61dafb)
@@ -18,7 +18,7 @@ One-command deployment for the complete First Aid Kit Manager stack. This reposi
 - **Multi-tenancy with JWT** - Secure user authentication with isolated data per user
 - **Automatic Email Alerts** - Notifications for medications nearing expiration
 - **Advanced Filtering** - Search drugs by name, form, expiration date with pagination
-- **Modern Tech Stack** - Java 25, Spring Boot 4.2.0, React 19, PostgreSQL 18.6
+- **Modern Tech Stack** - Java 25, Spring Boot 4.2.0, React 19, PostgreSQL 18.7
 - **One-Command Deployment** - Get the full stack running in minutes
 
 ## Quick Start
@@ -89,7 +89,7 @@ That's it! Wait for containers to start (first run may take a few minutes to pul
 |---------|-------|------|-------------|
 | frontend | `ghcr.io/nextstepprodev/first-aid-kit-web:main` | 80 | React 19 web application |
 | api | `ghcr.io/nextstepprodev/first-aid-kit-api:main` | 8080 | Spring Boot REST API |
-| postgres | `postgres:18.6` | 5432 | PostgreSQL database |
+| postgres | `postgres:18.7` | 5432 | PostgreSQL database |
 
 ## Common Commands
 
