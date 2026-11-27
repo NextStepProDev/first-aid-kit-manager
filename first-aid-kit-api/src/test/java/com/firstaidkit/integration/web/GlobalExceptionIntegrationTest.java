@@ -1,6 +1,5 @@
 package com.firstaidkit.integration.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firstaidkit.config.NoSecurityConfig;
 import com.firstaidkit.config.TestCacheConfig;
 import com.firstaidkit.config.TestSecurityConfig;
@@ -25,6 +24,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import tools.jackson.databind.ObjectMapper;
 
 import java.time.OffsetDateTime;
 import java.util.Map;

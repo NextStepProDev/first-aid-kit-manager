@@ -42,7 +42,7 @@ docker compose -f docker-compose-dev.yml up -d
 
 ## Architecture Overview
 
-Spring Boot 4.1.2 application with Java 25, following a layered architecture with multi-tenant data isolation.
+Spring Boot 4.2.0 application with Java 25, following a layered architecture with multi-tenant data isolation.
 
 ### Package Structure
 
