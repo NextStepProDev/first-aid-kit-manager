@@ -27,8 +27,18 @@ Workflowy w `/.github/workflows/`:
 - `ci-frontend.yml`: lint, `tsc -b`, testy, potem obraz `ghcr.io/nextstepprodev/first-aid-kit-web`
   (tylko z `main`); tylko na zmiany w `first_aid_kit_frontend/**`
 - `deploy.yml`: ręczny deploy na VM (workflow_dispatch)
+- `dependency-submission.yml`: wysyła do GitHuba rozwiązane zależności backendu. ⚠️ To jedyne
+  źródło alertów bezpieczeństwa dla Gradle — graf zależności GitHuba nie czyta `build.gradle` ani
+  `libs.versions.toml`. Bez niego graf pokazywał 0 paczek Maven i żaden alert o Springu nie
+  przychodził.
 
 Nazwy obrazów GHCR celowo bez zmian: compose na VM ich używa.
+
+**Dependabot** (`.github/dependabot.yml`, od 27.11.2026): co poniedziałek 06:00 czasu
+warszawskiego, jak we wszystkich projektach. Wersje backendu siedzą w
+`first-aid-kit-api/gradle/libs.versions.toml` — **nie wracać do `"${...}"` z `gradle.properties`**.
+Compose z huba nie jest tym, co chodzi na VM (deploy go nie wysyła), więc PR-y compose wyrównują
+dev z produkcją, a nie zmieniają produkcji.
 
 Otwarte zadania dla całego stacku: `TODO.md`.
 
